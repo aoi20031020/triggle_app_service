@@ -6,6 +6,9 @@
 - Node.js（フロントエンドが必要な場合）
 - その他必要な依存関係（`bundle install` でインストールされます）
 
+### フロントエンド
+https://github.com/aoi20031020/triggle_app_front
+
 ## セットアップ手順
 
 ### 1. リポジトリのクローン
