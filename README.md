@@ -17,7 +17,6 @@ git https://github.com/aoi20031020/triggle_app_service
 cd triggle_app_service
 ```
 
-````
 
 ### 2. 必要な Gem のインストール
 
