@@ -136,4 +136,126 @@ curl -X POST http://localhost:3000/api/result \
 
 - **CORS エラーが発生する場合**
   フロントエンドとバックエンドの URL が異なる場合、CORS 設定が必要です。上記の設定を確認してください。
-````
+
+
+## Triggle Game APIドキュメント
+
+Triggle Gameの結果と記録を管理・取得するためのAPIです。
+
+## バージョン
+
+- バージョン: 1.0.0
+
+## サーバー
+
+- URL: [http://localhost:3000](http://localhost:3000)
+  - 説明: local
+
+## エンドポイント
+
+### `/api/result`
+
+#### GET: ゲーム結果を取得
+
+ゲーム結果を取得します。タイムスタンプ、プレイヤー番号、最終スコア、ゲーム記録を含みます。
+
+**レスポンス:**
+
+- `200 OK`: ゲーム結果が正常に取得されました。
+
+```json
+{
+  "game_result": {
+    "timestamp": "2025-01-18T12:34:56.789Z",
+    "player_number": 4,
+    "final_scores": [20, 15, 10, 30],
+    "game_record": [
+      {
+        "player_number": 1,
+        "click_pole": [2.5, 3.7],
+        "clicked_pole": [4.2, 5.1],
+        "player1": 10,
+        "player2": 0,
+        "player3": 0,
+        "player4": 0
+      },
+      {
+        "player_number": 2,
+        "click_pole": [5.6, 6.8],
+        "clicked_pole": [7.3, 8.4],
+        "player1": 10,
+        "player2": 5,
+        "player3": 0,
+        "player4": 0
+      }
+    ]
+  }
+}
+```
+
+- `500 Internal Server Error`: サーバーエラーが発生しました。
+
+#### POST: ゲーム結果を送信
+
+新しいゲーム結果を送信します。タイムスタンプ、プレイヤー番号、最終スコア、ゲーム記録を含むデータを送信します。
+
+**リクエストボディ:**
+
+```json
+{
+  "game_result": {
+    "timestamp": "2025-01-18T12:34:56.789Z",
+    "player_number": 4,
+    "final_scores": [20, 15, 10, 30],
+    "game_record": [
+      {
+        "player_number": 1,
+        "click_pole": [2.5, 3.7],
+        "clicked_pole": [4.2, 5.1],
+        "player1": 10,
+        "player2": 0,
+        "player3": 0,
+        "player4": 0
+      },
+      {
+        "player_number": 2,
+        "click_pole": [5.6, 6.8],
+        "clicked_pole": [7.3, 8.4],
+        "player1": 10,
+        "player2": 5,
+        "player3": 0,
+        "player4": 0
+      }
+    ]
+  }
+}
+```
+
+**レスポンス:**
+
+- `201 Created`: ゲーム結果が正常に送信されました。
+- `400 Bad Request`: データが無効なためリクエストが失敗しました。
+- `500 Internal Server Error`: サーバーエラーが発生しました。
+
+## スキーマ
+
+### `game_result`
+
+- `timestamp` (string, date-time): 結果が記録されたタイムスタンプ。
+- `player_number` (integer): ゲームに参加したプレイヤーの人数。
+- `final_scores` (array of integers): 各プレイヤーの最終スコア。
+- `game_record` (array of objects): ゲーム記録。各プレイヤーの操作やスコアを含みます。
+
+#### `game_record` の各エントリー
+
+- `player_number` (integer): 手を行ったプレイヤーの番号。
+- `click_pole` (array of floats): プレイヤーがクリックしたポールの座標。
+- `clicked_pole` (array of floats): プレイヤーがクリックしたポールの座標。
+- `player1`, `player2`, `player3`, `player4` (integer): 各プレイヤーの手番後のスコア。
+
+## エラーレスポンス
+
+- `400 Bad Request`: リクエストが無効な場合。
+- `500 Internal Server Error`: サーバーエラーが発生した場合。
+
+```
