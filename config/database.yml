@@ -32,9 +32,9 @@ development:
 test:
   adapter: mysql2
   encoding: utf8mb4
-  username: root
-  password: "password"
-  database: log_service_test
+  username: <%= ENV['DB_USERNAME'] || 'root' %>
+    password: <%= ENV['DB_PASSWORD'] || '' %>
+  database: <%= ENV['DB_NAME'] || 'log_service_test' %>
   pool: 5
 
 # As with config/credentials.yml, you never want to store sensitive information,
