@@ -9,6 +9,102 @@
 ### フロントエンド
 https://github.com/aoi20031020/triggle_app_front
 
+### MySQLをダウンロードして起動する手順
+
+### **1. MySQLをダウンロードする**
+
+1. **公式サイトにアクセス**  
+   MySQLの公式ダウンロードページにアクセスします：  
+   [MySQL Downloads](https://dev.mysql.com/downloads/)
+
+2. **適切なバージョンを選択**  
+   - **MySQL Community Server** を選択します（オープンソース版で無料）。
+   - 自分のOS（Windows, macOS, Linux）に合ったインストーラを選びます。
+
+3. **ダウンロード**  
+   - OSに合ったインストーラをクリックします。
+   - ログインやアカウント作成を求められますが、「No thanks, just start my download」をクリックしてスキップ可能です。
+
+### **2. MySQLをインストールする**
+
+1. **インストーラを実行**  
+   ダウンロードしたインストーラを開きます。
+
+2. **セットアップタイプを選択**  
+   - 通常は「Developer Default」または「Custom」を選びます。
+   - 必要に応じてインストールパスを指定します。
+
+3. **コンポーネントをインストール**  
+   必要なコンポーネント（MySQL Server, Workbench, Shellなど）がインストールされます。
+
+4. **MySQL Serverの設定**  
+   - サーバータイプ: 通常は「Standalone MySQL Server」を選択します。
+   - 認証方法: 最新の認証（SHA256）またはレガシー認証（互換性が必要な場合）を選びます。
+   - 管理者用の **root パスワード** を設定し、必要に応じて他のユーザーを追加します。
+
+5. **MySQLを初期化**  
+   - データディレクトリの初期化が行われます。
+   - サービスとしてMySQLを登録するかどうか選択します（通常は有効にします）。
+
+6. **インストール完了**  
+   インストールが完了したら、WorkbenchやShellを起動して接続を確認します。
+
+### **3. MySQLを起動する**
+
+#### **Windowsの場合**
+1. **MySQLサービスを起動**  
+   - コマンドプロンプトを開き、以下のコマンドを実行します:
+     ```cmd
+     net start mysql
+     ```
+   - もしくは、サービス管理ツールで「MySQL」を手動で開始します。
+
+2. **MySQL Shellに接続**  
+   - 以下のコマンドでMySQLに接続します:
+     ```cmd
+     mysql -u root -p
+     ```
+   - rootパスワードを入力します。
+
+#### **macOSの場合**
+1. **Homebrewを使ってMySQLを起動**  
+   - ターミナルで以下を実行:
+     ```bash
+     brew services start mysql
+     ```
+
+2. **MySQLに接続**  
+   - 接続コマンド:
+     ```bash
+     mysql -u root -p
+     ```
+
+#### **Linuxの場合**
+1. **MySQLサービスを起動**  
+   - 以下のコマンドを実行:
+     ```bash
+     sudo systemctl start mysql
+     ```
+
+2. **MySQLに接続**  
+   - rootとして接続:
+     ```bash
+     mysql -u root -p
+     ```
+
+### **4. 起動後の確認**
+1. **データベース一覧の確認**  
+   MySQLに接続した後、以下のコマンドでデータベース一覧を確認できます:
+   ```sql
+   SHOW DATABASES;
+   ```
+
+2. **MySQLのバージョンを確認**  
+   以下を実行:
+   ```sql
+   SELECT VERSION();
+   ```
+
 ## セットアップ手順
 
 ### 1. リポジトリのクローン
