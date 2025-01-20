@@ -1,6 +1,6 @@
 module Api
   class ResultsController < ApplicationController
-    skip_before_action :verify_authenticity_token, only: [:create] #CSRFトークンの無効化
+    skip_before_action :verify_authenticity_token, only: [ :create ] # CSRFトークンの無効化
 
     # GET /api/result
     def show
@@ -9,7 +9,7 @@ module Api
       if game_result
         render json: game_result, status: :ok
       else
-        render json: { status: 'error', message: 'No game result found' }, status: :not_found
+        render json: { status: "error", message: "No game result found" }, status: :not_found
       end
     end
 
@@ -21,7 +21,7 @@ module Api
         final_scores: [],  # final_scoresは配列なので、単純に配列として許可
         game_record: [
           :player_number,
-          {click_pole: [], clicked_pole: []},
+          { click_pole: [], clicked_pole: [] },
           :player1,
           :player2,
           :player3,
@@ -33,9 +33,9 @@ module Api
       game_result = Result.new(game_result_params)
 
       if game_result.save
-        render json: { status: 'success', game_result: game_result }, status: :created
+        render json: { status: "success", game_result: game_result }, status: :created
       else
-        render json: { status: 'error', message: 'Failed to save game result', errors: game_result.errors.full_messages }, status: :unprocessable_entity
+        render json: { status: "error", message: "Failed to save game result", errors: game_result.errors.full_messages }, status: :unprocessable_entity
       end
     end
   end

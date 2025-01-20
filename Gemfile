@@ -63,4 +63,4 @@ group :test do
 end
 
 # cors
-gem 'rack-cors'
+gem "rack-cors"
